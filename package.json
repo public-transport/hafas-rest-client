@@ -1,0 +1,51 @@
+{
+	"name": "hafas-rest-client",
+	"version": "1.0.0",
+	"description": "Client for HAFAS rest.exe public transport APIs.",
+	"keywords": [
+		"hafas",
+		"public",
+		"transport",
+		"transit",
+		"api",
+		"http"
+	],
+	"homepage": "https://github.com/public-transport/hafas-rest-client",
+	"bugs": "https://github.com/public-transport/hafas-rest-client/issues",
+	"repository": "public-transport/hafas-rest-client",
+	"license": "ISC",
+	"author": "Jannis R <mail@jannisr.de>",
+	"contributors": [
+		"Julius Tens <mail@juliustens.eu>"
+	],
+	"main": "index.js",
+	"files": [
+		"index.js",
+		"example.js"
+	],
+	"scripts": {
+		"check-deps": "depcheck --ignores='tap-min,replayer'",
+		"lint": "eslint .",
+		"prepublishOnly": "npm run lint && npm test",
+		"test": "npm run test-unit && npm run test-integration",
+		"test-e2e": "VCR_OFF=true node test/e2e/index.js | tap-spec",
+		"test-integration": "VCR_MODE=playback node test/e2e/index.js | tap-spec",
+		"test-integration:record": "VCR_MODE=record node test/e2e/index.js | tap-spec",
+		"test-unit": "node test/index.js | tap-spec"
+	},
+	"devDependencies": {
+		"depcheck": "^1.2.0",
+		"eslint": "^7.11.0",
+		"eslint-config-standard": "^14.1.1",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1",
+		"replayer": "^2.2.3",
+		"tap-min": "^2.0.0",
+		"tape": "^5.0.1"
+	},
+	"engines": {
+		"node": ">=12"
+	}
+}

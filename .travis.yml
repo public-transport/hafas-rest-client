@@ -1,0 +1,21 @@
+language: node_js
+os: linux
+node_js:
+  - node
+  - 'lts/*'
+  - '12'
+script:
+  - 'npm run check-deps'
+  - 'npm run lint'
+  - 'npm test'
+jobs:
+  include:
+    - name: test-e2e
+      script: npm run test-e2e
+      node_js: '12'
+  allow_failures:
+    - name: test-e2e
+cache: npm
+notifications:
+  email:
+    on_success: never
