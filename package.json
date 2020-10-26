@@ -1,6 +1,6 @@
 {
-	"name": "hafas-rest-client",
-	"version": "1.0.0",
+	"name": "@public-transport/hafas-rest-client",
+	"version": "0.0.0",
 	"description": "Client for HAFAS rest.exe public transport APIs.",
 	"keywords": [
 		"hafas",
@@ -21,7 +21,8 @@
 	"main": "index.js",
 	"files": [
 		"index.js",
-		"example.js"
+		"lib/*",
+		"profiles/*"
 	],
 	"scripts": {
 		"check-deps": "depcheck --ignores='tap-min,replayer'",
@@ -43,9 +44,22 @@
 		"eslint-plugin-standard": "^4.0.1",
 		"replayer": "^2.2.3",
 		"tap-min": "^2.0.0",
+		"tap-spec": "^5.0.0",
 		"tape": "^5.0.1"
 	},
 	"engines": {
 		"node": ">=12"
+	},
+	"dependencies": {
+		"content-type": "^1.0.4",
+		"fetch-ponyfill": "^6.1.1",
+		"hafas-client": "5.9.0",
+		"lodash": "^4.17.20",
+		"luxon": "^1.25.0",
+		"object-scan": "^13.5.0",
+		"parse-iso-duration": "^1.1.0",
+		"pinkie-promise": "^2.0.1",
+		"qs": "^6.9.4",
+		"slugg": "^1.2.1"
 	}
 }
