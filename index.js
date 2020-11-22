@@ -129,6 +129,29 @@ const createRestClient = (profile, token, userAgent) => {
 		return ctx.res.Trip[0] ? profile.parseJourney(ctx, ctx.res.Trip[0]) : null
 	}
 
+	const trip = async (tripId, opt = {}) => {
+		if (typeof tripId !== 'string' || !tripId) {
+			throw new TypeError('tripId must be a non-empty string.')
+		}
+
+		opt = {
+			polylines: false, // return leg shapes?
+			...opt,
+		}
+
+		const query = {
+			id: tripId,
+			// @todo date
+			poly: opt.polylines ? 1 : 0,
+			showPassingPoints: 0, // return pass-by stopovers
+			rtMode: 'FULL', // todo: is this required here?
+		}
+
+		const ctx = await request({ profile, opt }, token, userAgent, 'journeyDetails', query)
+		// todo: ctx.res.planRtTs
+		return profile.parseTrip(ctx, ctx.res)
+	}
+
 	const dataInfo = async () => {
 		const ctx = await request({ profile, opt: {} }, token, userAgent, 'datainfo')
 		return ctx.res
@@ -137,6 +160,7 @@ const createRestClient = (profile, token, userAgent) => {
 	const client = {
 		journeys,
 		refreshJourney,
+		trip,
 		dataInfo,
 	}
 	Object.defineProperty(client, 'profile', { value: profile })

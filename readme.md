@@ -27,6 +27,7 @@ Supported methods (so far):
 
 - `journeys(origin, destination, [opt])` - get journeys between locations
 - `refreshJourney(refreshToken, [opt])` - fetch up-to-date/more details of a `journey`
+- `trip(tripId, [opt])` - fetch up-to-date/more details of a `trip`
 - `dataInfo()` - get information about the HAFAS instance (e.g. a list of operators and sub-products)
 
 ## Related

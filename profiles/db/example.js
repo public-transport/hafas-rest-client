@@ -9,7 +9,7 @@ if (!TOKEN) throw new Error('missing TOKEN env var')
 /* eslint-disable no-unused-vars */
 
 const {
-	journeys, refreshJourney, dataInfo,
+	journeys, refreshJourney, trip, dataInfo,
 } = createClient(profile, TOKEN, 'hafas-rest-client example')
 
 const berlinOstkreuz = '8011162'
@@ -34,8 +34,9 @@ journeys(frankfurtHbf, somewhereInBerlin, {
 	stopovers: false,
 	language: 'de',
 })
-	// .then(journeys => journeys.flatMap(j => [...j.legs, '---']))
-	.then(({ journeys }) => refreshJourney(journeys[0].refreshToken, { language: 'de', stopovers: false }))
+// .then(journeys => journeys.flatMap(j => [...j.legs, '---']))
+// .then(({ journeys }) => refreshJourney(journeys[0].refreshToken, { language: 'de', stopovers: false }))
+	.then(({ journeys }) => trip(journeys[0].legs.find(l => Boolean(l.tripId)).tripId, { language: 'de' }))
 
 // dataInfo()
 	.then(data => console.log(require('util').inspect(data, { depth: null, colors: true })))
