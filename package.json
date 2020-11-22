@@ -1,6 +1,6 @@
 {
 	"name": "@public-transport/hafas-rest-client",
-	"version": "0.0.4",
+	"version": "0.1.0",
 	"description": "Client for HAFAS rest.exe public transport APIs.",
 	"keywords": [
 		"hafas",
